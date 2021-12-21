@@ -1,4 +1,4 @@
-package com.example.lesson3kotlin
+package com.example.lesson3kotlin.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,14 +9,20 @@ class MyAdapter2() : RecyclerView.Adapter<MyAdapter2.ViewHolder>() {
 
     private var list = arrayListOf<Int>()
 
-    fun setList(list : ArrayList<Int>){
+    fun setList(list: ArrayList<Int>) {
         this.list = list
         notifyDataSetChanged()
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ListItem2Binding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(
+            ListItem2Binding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     }
 
@@ -26,7 +32,8 @@ class MyAdapter2() : RecyclerView.Adapter<MyAdapter2.ViewHolder>() {
 
     override fun getItemCount(): Int = list.size
 
-    inner class ViewHolder(private var viewBinding : ListItem2Binding) : RecyclerView.ViewHolder(viewBinding.root){
+    inner class ViewHolder(private var viewBinding: ListItem2Binding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
         fun onBind(image: Int) {
             viewBinding.firstIV.setImageResource(image)
         }

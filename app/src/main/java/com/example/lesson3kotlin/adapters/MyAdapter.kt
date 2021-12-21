@@ -1,10 +1,11 @@
-package com.example.lesson3kotlin
+package com.example.lesson3kotlin.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lesson3kotlin.databinding.ListItemBinding
+import com.example.lesson3kotlin.extensions.visible
 
 class MyAdapter(private var onClick: OnItemClick) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
@@ -36,16 +37,17 @@ class MyAdapter(private var onClick: OnItemClick) : RecyclerView.Adapter<MyAdapt
             viewBinding.firstIV.setImageResource(image)
 
             viewBinding.firstIV.setOnClickListener {
-                    viewBinding.backgroundIv.visibility = View.VISIBLE
-                    onClick.onClick(image)
+                viewBinding.backgroundIv.visible = true
+                onClick.onClick(image)
             }
-            viewBinding.backgroundIv.setOnClickListener{
-                viewBinding.backgroundIv.visibility = View.GONE
+            viewBinding.backgroundIv.setOnClickListener {
+                viewBinding.backgroundIv.visible = false
                 onClick.deleteClick(image)
 
             }
         }
     }
+
     interface OnItemClick {
 
         fun onClick(image: Int)
