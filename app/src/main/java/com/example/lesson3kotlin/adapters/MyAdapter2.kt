@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lesson3kotlin.databinding.ListItem2Binding
+import com.example.lesson3kotlin.extensions.loading
 
 class MyAdapter2() : RecyclerView.Adapter<MyAdapter2.ViewHolder>() {
 
-    private var list = arrayListOf<Int>()
+    private var list = arrayListOf<String>()
 
-    fun setList(list: ArrayList<Int>) {
+    fun setList(list: ArrayList<String>) {
         this.list = list
         notifyDataSetChanged()
     }
@@ -34,8 +35,8 @@ class MyAdapter2() : RecyclerView.Adapter<MyAdapter2.ViewHolder>() {
 
     inner class ViewHolder(private var viewBinding: ListItem2Binding) :
         RecyclerView.ViewHolder(viewBinding.root) {
-        fun onBind(image: Int) {
-            viewBinding.firstIV.setImageResource(image)
+        fun onBind(image: String) {
+            viewBinding.firstIV.loading(image)
         }
 
     }

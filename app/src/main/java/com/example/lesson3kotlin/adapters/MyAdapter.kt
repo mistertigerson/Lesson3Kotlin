@@ -1,17 +1,17 @@
 package com.example.lesson3kotlin.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lesson3kotlin.databinding.ListItemBinding
+import com.example.lesson3kotlin.extensions.loading
 import com.example.lesson3kotlin.extensions.visible
 
 class MyAdapter(private var onClick: OnItemClick) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
-    private var list = arrayListOf<Int>()
+    private var list = arrayListOf<String>()
 
-    fun setList(list: ArrayList<Int>) {
+    fun setList(list: ArrayList<String>) {
         this.list.addAll(list)
         notifyDataSetChanged()
 
@@ -33,8 +33,8 @@ class MyAdapter(private var onClick: OnItemClick) : RecyclerView.Adapter<MyAdapt
     inner class ViewHolder(private var viewBinding: ListItemBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
-        fun onBind(image: Int) {
-            viewBinding.firstIV.setImageResource(image)
+        fun onBind(image: String) {
+            viewBinding.firstIV.loading(image)
 
             viewBinding.firstIV.setOnClickListener {
                 viewBinding.backgroundIv.visible = true
@@ -50,8 +50,8 @@ class MyAdapter(private var onClick: OnItemClick) : RecyclerView.Adapter<MyAdapt
 
     interface OnItemClick {
 
-        fun onClick(image: Int)
+        fun onClick(image: String)
 
-        fun deleteClick(image: Int)
+        fun deleteClick(image: String)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.lesson3kotlin.UI
+package com.example.lesson3kotlin.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -14,7 +14,7 @@ import com.example.lesson3kotlin.databinding.ActivityMain2Binding
 class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
 
     private lateinit var adapter2: MyAdapter2
-    private var list = arrayListOf<Int>()
+    private var list = arrayListOf<String>()
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +30,7 @@ class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-                    result.data?.getIntegerArrayListExtra(TEXT)?.let {
+                    result.data?.getStringArrayListExtra(TEXT)?.let {
                         list.addAll(it)
                     }
                 }
@@ -38,7 +38,7 @@ class MainActivity2 : BaseActivity<ActivityMain2Binding>() {
     }
 
     private fun createList() {
-        intent.getIntegerArrayListExtra(TEXT)?.let { list.addAll(it) }
+        intent.getStringArrayListExtra(TEXT)?.let { list.addAll(it) }
     }
 
     override fun inflateVB(inflater: LayoutInflater): ActivityMain2Binding {
